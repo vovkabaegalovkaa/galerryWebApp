@@ -6,7 +6,7 @@ try{
 catch(PDOException $e){
     throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
-if(isset($_GET['login']) && isset($_GET['password']) && isset($_GET['remember'])){
+if(isset($_GET['login']) && isset($_GET['password'])){
     $login = clearData($_GET['login']);
     $stmt = $pdo->prepare("SELECT * FROM users WHERE login = ?;");
     $stmt->bindParam(1, $login, PDO::PARAM_STR, 32);
@@ -15,14 +15,10 @@ if(isset($_GET['login']) && isset($_GET['password']) && isset($_GET['remember'])
     if(!$userInfo){
         echo "Пользователя не существует, поверьте введенные данные и повторите ввод";
     }
-    elseif(!password_verify($_GET['password'], $userInfo['password'])){
+    elseif(!($_GET['password'] == $userInfo['password'])){
         echo "Пароль введен неверно, поверьте введенные данные и повторите ввод";
     }
     else{
-        if($_GET['remember'] == "yes"){
-            setcookie("login", $userInfo['login'], time() + 3600*24*62, "/");
-            setcookie("password", $userInfo['password'], time() + 3600*24*62, "/");
-        }
         echo "Попытка успешна";
     }
 }
