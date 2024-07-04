@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+#helloText{
+    text-align: justify;
+    font-family: Montserrat;
+    font-weight: 500;
+    margin: auto;
+}
+.container{
+    width: 550px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    border: 3px solid black;
+    border-radius: 5px;
+    position: relative;
+}
+.formBox{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.formBox > button{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-weight: 700;
+    transition: background-color 0.5s linear, color 0.5s linear;
+    color: rgb(135, 50, 168);
+}
+.formBox > input{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-weight: 400;    
+}
+.formBox > input, button{
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+.formBox p{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-weight: 400; 
+    text-align: center;
+    margin: 0;
+}
+#password{
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+#signInButton{
+    margin-top: 15%;
+}
+button:disabled{
+    opacity: 0.5;
+}
+button:enabled{
+    opacity: 1;
+}
+.errorMessage{
+    color: #c3606f;
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    font-weight: 400;
+    position: absolute; 
+    bottom: 20px; 
+    left: 0;
+}
+button:enabled:hover{
+    background-color: rgb(135, 50, 168);
+    color: #F0F0F0;
+}

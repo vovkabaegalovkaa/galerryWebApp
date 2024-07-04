@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="indexStyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+</head>
+<body>
+    <div class="container">
+        <p id="helloText">Gallery - это место, где фотографии оживают, и каждый кадр рассказывает свою историю. 
+            Здесь ваши воспоминания складываются в альбомы, а каждый пользователь может внести свой штрих в общую картину,
+            добавив фотографию в любой альбом. 
+            В Gallery каждый снимок обретает голос, получая имя и описание, а лайки и комментарии превращают его в центр живого общения. 
+            Создавайте, делитесь и взаимодействуйте в пространстве, где искусство фотографии соединяет людей.
+        </p>
+        <div class="formBox">
+            <input type="text" name="login" id="login" maxlength="16" size="30" placeholder="Ваш логин">
+            <input type="password" name="password" id="password" maxlength="16" size="30" placeholder="Ваш пароль">
+            <button id="signUpButton" disabled="">Вход</button>
+            <p id="rememberMe"><label>Запомнить меня?<input type="checkbox" name="rememberMe" id="remember"></label></p>
+            <button id="signInButton">Создать аккаунт</button>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
