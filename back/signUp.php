@@ -12,18 +12,26 @@ if(isset($_GET['login']) && isset($_GET['password']) && isset($_GET['remember'])
     $stmt->bindParam(1, $login, PDO::PARAM_STR, 32);
     $stmt->execute();
     $userInfo=$stmt->fetch();
+    header("content-type: application/json");
+    $out = [];
     if(!$userInfo){
-        echo "Пользователя не существует, поверьте введенные данные и повторите ввод";
+        $out["result"] = "Unknown user";
+        $out = json_encode($out);
+        echo $out;
     }
     elseif(!password_verify($_GET['password'], $userInfo['password'])){
-        echo "Пароль введен неверно, поверьте введенные данные и повторите ввод";
+        $out["result"] = "Incorrect password";
+        $out = json_encode($out);
+        echo $out;
     }
     else{
         if($_GET['remember'] == "yes"){
             setcookie("login", $userInfo['login'], time() + 3600*24*62, "/");
             setcookie("password", $userInfo['password'], time() + 3600*24*62, "/");
         }
-        echo "Попытка успешна";
+        $out["result"] = "Success";
+        $out = json_encode($out);
+        echo $out;
     }
 }
 function clearData($login){

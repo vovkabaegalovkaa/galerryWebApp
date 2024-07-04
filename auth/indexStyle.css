@@ -29,7 +29,7 @@ body{
     flex-direction: column;
     position: relative;
 }
-.formBox > button{
+button{
     font-family: Montserrat, 'Courier New', Courier, monospace;
     font-weight: 700;
     transition: background-color 0.5s linear, color 0.5s linear;
@@ -75,4 +75,41 @@ button:enabled{
 button:enabled:hover{
     background-color: rgb(135, 50, 168);
     color: #F0F0F0;
+}
+#modal{
+    border-radius: 5px;
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-weight: 400; 
+    text-align: center;
+    padding: 0;
+    border: 0;
+    display: block;
+    transform: scale(0.2);
+    opacity: 0;
+    transition: all 0.2s linear;
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    
+}
+#modal[open]{
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+#error{
+    font-weight: 600;
+}
+#modalArea{
+    padding: 1em 1em;
+}
+#modal::backdrop{
+    background-color: rgba(0,0,0, 0.7);
+}
+#closeModal{
+    width: 80px;
 }

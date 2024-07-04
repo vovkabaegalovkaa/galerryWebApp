@@ -13,13 +13,19 @@ if(isset($_GET['login']) && isset($_GET['password'])){
     $stmt->execute();
     $userInfo=$stmt->fetch();
     if(!$userInfo){
-        echo "Пользователя не существует, поверьте введенные данные и повторите ввод";
+        $out["result"] = "Unknown user";
+        $out = json_encode($out);
+        echo $out;
     }
     elseif(!($_GET['password'] == $userInfo['password'])){
-        echo "Пароль введен неверно, поверьте введенные данные и повторите ввод";
+        $out["result"] = "Incorrect password";
+        $out = json_encode($out);
+        echo $out;
     }
     else{
-        echo "Попытка успешна";
+        $out["result"] = "Success";
+        $out = json_encode($out);
+        echo $out;
     }
 }
 function clearData($login){
