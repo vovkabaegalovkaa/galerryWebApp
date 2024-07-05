@@ -33,7 +33,7 @@ window.onload = (() => {
             else{
                 pwMessage.classList.add("errorMessage");
                 signUpBtn.setAttribute("disabled", "");
-                pwMessage.innerHTML = "Пароль слишком короткий.";
+                pwMessage.innerHTML = "Пароль слишком короткий";
                 password.parentNode.insertBefore(pwMessage, password.nextSibling);
                 pwStatus = false;
             }
@@ -55,6 +55,9 @@ window.onload = (() => {
             }).then(data => {
                 checkData(data);
             })
+        })
+        signInBtn.addEventListener("click", () => {
+            window.location.href="../reg\\reg.html";
         })
     }
 })
@@ -88,7 +91,7 @@ function getCookie(name) {
 
 function checkData(data){
     if(data['result'] == "Success"){
-        window.location.href="../reg\\reg.html";
+
     }
     else{
         let modal = document.querySelector("#modal");

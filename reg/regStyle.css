@@ -1,4 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 body{
-    background: rgb(2,0,36);
-    background: linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(136,50,168,1) 0%, rgba(255,255,255,1) 100%);
+    margin: 0;
+}
+button:disabled{
+    opacity: 0.5;
+}
+button:enabled{
+    opacity: 1;
+}
+button:enabled:hover{
+    background-color: rgb(135, 50, 168);
+    color: #F0F0F0;
+}
+button{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-weight: 700;
+    transition: background-color 0.5s linear, color 0.5s linear;
+    color: rgb(135, 50, 168);
+    background-color: #F0F0F0;
+}
+#appWrapper {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    height: 100vh;
+    width: 100%;
+}
+#appContainer{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding-left: 10%;
+}
+#appName{
+    font-weight: bold;
+    font-size: 70px;
+    color: rgb(135, 50, 168);
+}
+#info{
+    font-weight: 800;
+    font-size: 40px;
+    text-align: left;
+}
+.registerForm{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 20%;
+    width: 30%;
+    height: auto;
+    position: relative;
+}
+.textFields{
+    width: 100%;
+    margin-bottom: 15%;
+    position: relative;
+}
+.textFields input{
+    box-sizing: border-box;
+    width: 49.5%;
+}
+#password{
+    margin-bottom: 15%;
+}
+#repeatPassword{
+    margin-bottom: 15%;
+}
+.registerForm input,button{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+.registerForm > input::placeholder{
+   font-size: 13.3333px; 
+    
+}
+.registerForm > input{
+    font-size: 22pt;
+}
+a{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-weight: 400;
+}
+.errorMessage{
+    color: #c3606f;
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    font-weight: 400;
+    position: absolute;  
+    width: 100%;
+    left: 0;
+    text-align: center;
+}
+.errorMessage#loginError{
+    color: #c3606f;
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    font-weight: 400;
+    position: absolute;  
+    width: 100%;
+    text-align: left;
+    left: 1%;
+}
+.errorMessage#nameError{
+    color: #c3606f;
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    font-weight: 400;
+    position: absolute;  
+    text-align: left;
+    width: 100%;
+    left: 51%;
 }
