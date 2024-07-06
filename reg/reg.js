@@ -72,12 +72,28 @@ window.onload = (() => {
         repeatPasswordStatus = false;
         deleteError("repeatPasswordError");
         if(repeatPassword.value != password.value){
-            createError(80, repeatPassword, "repeatPasswordError", "Пароли не совпадают");
+            createError(70, repeatPassword, "repeatPasswordError", "Пароли не совпадают");
         }
         else{
             repeatPasswordStatus = true;
         }
         checkSignUpData(loginStatus, nameStatus, passwordStatus, repeatPasswordStatus, signInBtn);
+    })
+
+    signInBtn.addEventListener("click", () => {
+        let response = fetch("../back/signIn.php", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `login=${login.value}&name=${userName.value}&password=${password.value}`
+        })
+        response.then(response => {
+            return response.text();
+        })
+        .then(result => {
+            console.log(result);
+        })
     })
 })
 

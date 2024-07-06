@@ -90,8 +90,8 @@ function getCookie(name) {
 }
 
 function checkData(data){
-    if(data['result'] == "Success"){
-
+    if(data['result'] == "Success"){    
+        console.log("ura")
     }
     else{
         let modal = document.querySelector("#modal");
