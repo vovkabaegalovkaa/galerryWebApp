@@ -91,7 +91,7 @@ function getCookie(name) {
 
 function checkData(data){
     if(data['result'] == "Success"){    
-        console.log("ura")
+        window.location.href = "../mainA/mainA.html";
     }
     else{
         let modal = document.querySelector("#modal");
