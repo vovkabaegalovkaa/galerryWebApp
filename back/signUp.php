@@ -29,9 +29,11 @@ if(isset($_GET['login']) && isset($_GET['password']) && isset($_GET['remember'])
             setcookie("login", $userInfo['login'], time() + 3600*24*62, "/");
             setcookie("password", $userInfo['password'], time() + 3600*24*62, "/");
             setcookie("name", $userInfo['name'], time() + 3600*24*62, "/");
+            setcookie("id", $userInfo['id'], time() + 3600*24*62, "/");
         }
         else{
             setcookie("name", $userInfo['name'], 0, "/");
+            setcookie("id", $userInfo['id'], 0, "/");
         }
         $out["result"] = "Success";
         $out = json_encode($out);
