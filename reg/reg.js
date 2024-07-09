@@ -92,7 +92,10 @@ window.onload = (() => {
             return response.text();
         })
         .then(result => {
-            console.log(result);
+            if (result == "User inserted successfully.")
+            {
+                window.location.href = "../auth/index.html";
+            }
         })
     })
 })

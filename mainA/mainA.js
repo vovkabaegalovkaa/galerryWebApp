@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     })
     .then(data =>{
         createImgElements(data);
+        next();
     })
 })
 
@@ -43,17 +44,24 @@ function createImgElements(data){
         albumDiv.appendChild(albumDescription);
     }
 }
-window.onload = (() => {
+function next(){
     let albums = document.querySelectorAll(".album");
+    let logOut = document.querySelector(".logOut");
+    let modal = document.querySelector("#modalAlbumId");
+    let menuOpener = document.querySelectorAll(".menu");
+    let albumId;
+    let redactAlbum = document.querySelector(".redactAlbum");
+    let deleteAlbum = document.querySelector(".deleteAlbum");
+    let deleteModal = document.querySelector("#deleteModal");
+    let confirmDelete = document.querySelector(".confirmDelete");
+    let cancelDelete = document.querySelector(".cancelDelete");
     for(let album of albums){
         album.addEventListener("click", () => {
-            //переход к содержимому альбому
+            //переход к содержимому альбомa
             console.log(`Выбранный альбом – ${album.getAttribute('id')}`)
         })
     }
-    let modal = document.querySelector(".modal");
-    let menuOpener = document.querySelectorAll(".menu");
-    let albumId;
+
     for(let menu of menuOpener){
         menu.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -61,22 +69,60 @@ window.onload = (() => {
             albumId = menu.getAttribute("id");
         })
     }
+
     modal.addEventListener("click", (e) => {
         if(e.target == modal){
             modal.close();
         }
     })
-    let redactAlbum = document.querySelector(".redactAlbum");
-    let deleteAlbum = document.querySelector(".deleteAlbum");
+
     redactAlbum.addEventListener("click", () => {
         //переход к редактированию альбома
         console.log(`redact album #${albumId}`);
     })
+
     deleteAlbum.addEventListener("click", () => {
-        //переход у удалению альбома
+        modal.close();
+        deleteModal.showModal();
         console.log(`delete album #${albumId}`);
     })
-    let logOut = document.querySelector(".logOut");
+
+    deleteModal.addEventListener("click", (e) => {
+        if(e.target == deleteModal){
+            deleteModal.close();
+        }
+    })
+
+    cancelDelete.addEventListener("click", () => {
+        deleteModal.close();
+    })
+
+    confirmDelete.addEventListener("click", () => {
+        let response = fetch("../back/deleteAlbum.php",{
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `id=${albumId}`
+        });
+        response.then(response => {
+            return response.json();
+        })
+        .then(data =>{
+            if(data['result'] == "Success"){
+                let objectToDelete = document.getElementById(`${albumId}`);
+                if(objectToDelete.classList.contains('album')){
+                    objectToDelete.remove();
+                }
+                deleteModal.close();
+            }
+            else{
+                //Доделать
+                console.log("Mistake");
+            }
+        })
+    })
+
     logOut.addEventListener("click", () => {
         let response = fetch("../back/clearCookie.php", {
             method: "DELETE"
@@ -90,7 +136,7 @@ window.onload = (() => {
             }
         })
     })
-})
+}
 
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
