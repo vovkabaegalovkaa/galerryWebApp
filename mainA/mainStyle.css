@@ -28,7 +28,7 @@ button {
     left: 0;
     top: 0;
     right: 0;
-    background-color: #fcf4e4;
+    background-color: #dec0fc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,5 +168,14 @@ p.albumDescription{
 .modal p{
     margin-bottom: 3%;
     margin-top: 0;
+}
+.addAlbum{
+    text-align: center;
+}
+#addAlbum{
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 1%;
+    height: 2em;
 }
 

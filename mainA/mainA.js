@@ -49,6 +49,7 @@ function next(){
     let logOut = document.querySelector(".logOut");
     let modal = document.querySelector("#modalAlbumId");
     let menuOpener = document.querySelectorAll(".menu");
+    let addAlbum = document.querySelector("#addAlbum");
     let albumId;
     let redactAlbum = document.querySelector(".redactAlbum");
     let deleteAlbum = document.querySelector(".deleteAlbum");
@@ -97,13 +98,16 @@ function next(){
         deleteModal.close();
     })
 
-    confirmDelete.addEventListener("click", () => {
+    confirmDelete.addEventListener("click", (e) => {
+        let el = document.getElementById(`${albumId}`);
+        let elImg = el.querySelector("img");
+        let filePath = elImg.getAttribute("src");
+        let formData = new FormData();
+        formData.set("id", albumId);
+        formData.set("filePath", filePath);
         let response = fetch("../back/deleteAlbum.php",{
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: `id=${albumId}`
+            method: "POST",
+            body: formData
         });
         response.then(response => {
             return response.json();
@@ -121,6 +125,10 @@ function next(){
                 console.log("Mistake");
             }
         })
+    })
+
+    addAlbum.addEventListener("click", () => {
+        window.location.href = '../addAlbum/addAlbum.html';
     })
 
     logOut.addEventListener("click", () => {

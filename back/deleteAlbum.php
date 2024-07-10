@@ -6,11 +6,10 @@ try{
 catch(PDOException $e){
     throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
-$input = file_get_contents("php://input");
-parse_str($input, $data);
-if(isset($data['id'])){
+if(isset($_POST['id']) && isset($_POST['filePath'])){
+    unlink($_POST['filePath']);
     $stmt = $pdo->prepare("DELETE FROM albums WHERE id=?");
-    $stmt->bindParam(1, $data['id'], PDO::PARAM_INT);
+    $stmt->bindParam(1, $_POST['id'], PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->rowCount();
     header("Content-type: application/json");

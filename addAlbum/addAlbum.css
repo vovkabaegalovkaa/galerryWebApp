@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+    margin: 0;
+    min-height: 100vh;
+    width: 100%;
+}
+button:disabled{
+    opacity: 0.5;
+}
+button:enabled{
+    opacity: 1;
+}
+button:enabled:hover{
+    background-color: rgb(135, 50, 168);
+    color: #F0F0F0;
+}
+button{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    font-weight: 700;
+    transition: background-color 0.5s linear, color 0.5s linear;
+    color: rgb(135, 50, 168);
+    background-color: #F0F0F0;
+}
+.appWrapper{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+.appContainer{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    text-align: right;
+    width: 100%;
+}
+.helper{
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+#appName{
+    font-weight: bold;
+    font-size: 70px;
+    color: rgb(135, 50, 168);
+}
+#appDescription{
+    font-weight: 800;
+    font-size: 40px;
+}
+.addForm{
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    margin: 5% 0;
+}
+#file{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+#fileLabel{
+    width: 61%;
+    margin: 0 auto;
+    margin-bottom: auto;
+}
+#fileLabel button{
+    width: 100%;
+}
+.addForm *
+{
+    border-radius: 5px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.addForm input, button{
+    font-family: Montserrat, 'Courier New', Courier, monospace;
+    height: 40px;
+    text-align: center;
+    width: 61%;
+    margin-bottom: auto;
+}
+#image{
+    border: 1px solid black;
+    width: 61%;
+    height: 60%;
+    max-width: 61%;
+    max-height: 60%;
+    margin-bottom: 1%;
+}

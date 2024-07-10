@@ -68,6 +68,7 @@ button{
     margin-bottom: 15%;
 }
 .registerForm input,button{
+    box-sizing: border-box;
     font-family: Montserrat, 'Courier New', Courier, monospace;
     height: 40px;
     border-radius: 5px;
