@@ -78,14 +78,20 @@ function next(){
     })
 
     redactAlbum.addEventListener("click", () => {
-        //переход к редактированию альбома
-        console.log(`redact album #${albumId}`);
+        let el = document.getElementById(`${albumId}`);
+        let image = el.querySelector("img");
+        let name = el.querySelector(".albumName");
+        let description = el.querySelector(".albumDescription");
+        localStorage.setItem("oldFilePath", image.getAttribute("src"));
+        localStorage.setItem("oldName", name.textContent);
+        localStorage.setItem("oldDescription", description.textContent);
+        localStorage.setItem("albumId", albumId);
+        window.location.href = "../redactAlbum/redactAlbum.html";
     })
 
     deleteAlbum.addEventListener("click", () => {
         modal.close();
         deleteModal.showModal();
-        console.log(`delete album #${albumId}`);
     })
 
     deleteModal.addEventListener("click", (e) => {

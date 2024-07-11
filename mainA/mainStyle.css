@@ -34,6 +34,7 @@ button {
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
+    z-index: 100;
 }
 .appName {
     font-family: Montserrat, 'Courier New', Courier, monospace;
@@ -97,6 +98,7 @@ p.albumDescription{
     width: 24%;
     text-align: right;
     font-size: 18pt;
+    z-index: 1;
 }
 .modal{
     width: 25%;
