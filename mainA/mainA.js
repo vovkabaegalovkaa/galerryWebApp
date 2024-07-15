@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () =>{
+    localStorage.clear();
     let response = fetch("../back/getAlbums.php");
     response.then(response =>{
         return response.json();
@@ -60,6 +61,8 @@ function next(){
         album.addEventListener("click", () => {
             //переход к содержимому альбомa
             console.log(`Выбранный альбом – ${album.getAttribute('id')}`)
+            localStorage.setItem("albumId", album.getAttribute("id"));
+            window.location.href = "../mainP/mainP.html";
         })
     }
 

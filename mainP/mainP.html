@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="mainP.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+</head>
+<body>
+    <dialog class="modal" id="deleteModal">
+        <div class="modalAreaDelete">
+            <p>Уверены, что хотите удалить фото?</p>
+            <div class="buttonsCont">
+                <button class="confirmDelete">Удалить</button>
+                <button class="cancelDelete">Отмена</button>
+            </div>
+        </div>
+    </dialog>
+    <dialog class="modal" id="modalAlbumId">
+        <div class="modalArea">
+            <button class="deleteAlbum">Удалить</button>
+            <button class="redactAlbum">Редактировать</button>
+        </div>
+    </dialog>
+    <div class="header">
+        <span class="appName">Gallery</span>
+        <img src="../assets/log-out-svgrepo-com.svg" alt="Icon" class="logOut">
+    </div>
+    <div class="photoesContainer">
+        <div class="photo" id="photoId">
+            <div class="menu" id="photoMenuId">☰</div>
+            <div class="preview">
+                <img src="../photoes_examples/Снимок экрана 2024-04-12 215356.png" class="previewPhoto">
+            </div>
+            <p class="photoName">Photo name 1</p>
+            <p class="photoDescription">Photo description 1</p>
+            <div class="infoBar">
+                <span class="likeCont">
+                    <img src="../assets/like-svgrepo-com.svg" id="like">
+                    <span class="count" id="likeCount">100</span>
+                </span>
+                <span class="commentCont">
+                    <span class="count" id="commentCount">100</span>
+                    <img src="../assets/comment-1-svgrepo-com.svg" id="comment">
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="addPhoto">
+        <button id="addPhoto">Добавить фото</button>
+    </div>
+    <script src="mainP.js"></script>
+</body>
+</html>
