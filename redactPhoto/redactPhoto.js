@@ -1,10 +1,10 @@
 window.onload = () => {
     let addFileButton = document.querySelector("#addButton");
     let file = document.querySelector("#file");
-    let albumName = document.querySelector("#name");
-    albumName.value = localStorage.getItem('oldName');
-    let albumDescription = document.querySelector("#description");
-    albumDescription.value = localStorage.getItem('oldDescription');
+    let photoName = document.querySelector("#name");
+    photoName.value = localStorage.getItem('oldName');
+    let photoDescription = document.querySelector("#description");
+    photoDescription.value = localStorage.getItem('oldDescription');
     let confirm = document.querySelector("#redactConfirm");
     let image = document.querySelector("img");
     image.setAttribute("src", localStorage.getItem("oldFilePath"));
@@ -33,9 +33,9 @@ window.onload = () => {
         let oldName = localStorage.getItem("oldName");
         let oldDescription = localStorage.getItem("oldDescription");
         let oldFilePath = localStorage.getItem("oldFilePath");
-        let idToRedact = localStorage.getItem("albumId");
-        let newName = (albumName.value.length > 0) ? albumName.value : `${getCookie("name")}s album`;
-        let newDescription = (albumDescription.value.length > 0) ? albumDescription.value : `${getCookie("name")}s album`;
+        let idToRedact = localStorage.getItem("photoId");
+        let newName = (photoName.value.length > 0) ? photoName.value : `${getCookie("name")}s photo`;
+        let newDescription = (photoDescription.value.length > 0) ? photoDescription.value : `${getCookie("name")}s photo`;
         let newFilePath = image.getAttribute("src");
         
         let formData = new FormData();
@@ -51,7 +51,7 @@ window.onload = () => {
             formData.set("fileToDelete", oldFilePath);
         }
 
-        let response = fetch('../back/redactAlbum.php',{
+        let response = fetch('../back/redactPhoto.php',{
             method: "POST",
             body: formData
         });
@@ -60,8 +60,11 @@ window.onload = () => {
         })
         .then(data =>{
             if(data == "Success"){
-                localStorage.clear();
-                window.location.href = "../mainA/mainA.html";
+                localStorage.removeItem("oldName");
+                localStorage.removeItem("photoId");
+                localStorage.removeItem("oldDescription");
+                localStorage.removeItem("oldFilePath");
+                window.location.href = "../mainP/mainP.html";
             }
         })
     })

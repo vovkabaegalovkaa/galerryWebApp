@@ -7,7 +7,7 @@ try{
 catch(PDOException $e){
     throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
-if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['userId']) && isset($_FILES['file'])){
+if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['userId']) && isset($_POST['albumId']) && isset($_FILES['file'])){
     $name = sanitizeString($_POST['name']);
     $description = sanitizeString($_POST['description']);
     $filename = ROOTDIR . $_FILES['file']['name'];
@@ -15,13 +15,20 @@ if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['userId
         move_uploaded_file($_FILES['file']['tmp_name'], $filename);
     }
     $userId = $_POST['userId'];
-    $stmt = $pdo->prepare("INSERT INTO albums VALUES(null, ?, ?, ?, ?)");
+    $albumId = $_POST['albumId'];
+    $stmt = $pdo->prepare("INSERT INTO photoes VALUES(null, ?, ?, ?, ?, ?)");
     $stmt->bindParam(1, $name, PDO::PARAM_STR, 32);
     $stmt->bindParam(2, $description, PDO::PARAM_STR, 32);
-    $stmt->bindParam(3, $userId, PDO::PARAM_INT);
-    $stmt->bindParam(4, $filename, PDO::PARAM_STR, 255);
+    $stmt->bindParam(3, $filename, PDO::PARAM_STR, 255);
+    $stmt->bindParam(4, $albumId, PDO::PARAM_INT);
+    $stmt->bindParam(5, $userId, PDO::PARAM_INT);
     $stmt->execute();
-    echo "Success";
+    if($stmt->rowCount() > 0){
+        echo "Success";
+    }
+    else{
+        echo "No success";
+    }
 
 }
 function sanitizeString($var){

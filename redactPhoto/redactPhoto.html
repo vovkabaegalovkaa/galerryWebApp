@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="redactPhoto.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+</head>
+<body>
+    <div class="appWrapper">
+        <div class="redactForm">
+            <img id="image">
+            <input type="file" id = "file" accept="image/*">
+            <label for="file" id="fileLabel">
+                <button id = "addButton">Выбрать файл</button>
+            </label>
+            <input type="text" id = "name" placeholder="Название альбома" maxlength="32">
+            <input type="text" id = "description" placeholder="Описание альбома" maxlength="32">
+            <button id = "redactConfirm">Изменить</button>
+        </div>
+        <div class="appContainer">
+            <div class="helper">
+                <span id="appName">GALLERY</span>
+                <span id="appDescription">Изменяйте.</span>
+            </div>
+        </div>
+    </div>
+    <script src="redactPhoto.js"></script>
+</body>
+</html>

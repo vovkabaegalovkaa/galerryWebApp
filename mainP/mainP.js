@@ -36,7 +36,7 @@ function createElements(data){
             let preview = document.createElement("div");
             preview.classList.add('preview');
             let content = document.createElement("img");
-            content.classList.add("preciewPhoto");
+            content.classList.add("previewPhoto");
             content.setAttribute("src", photo['file_path']);
             preview.appendChild(content);
             photoDiv.appendChild(preview);
@@ -162,6 +162,89 @@ function next(){
             }
         })
     }
+    let menues = document.querySelectorAll(".menu");
+    let modal = document.querySelector("#modalPhotoId")
+    let photoId;
+    let redactPhoto = document.querySelector(".redactPhoto");
+    let deletePhoto = document.querySelector(".deletePhoto");
+    let deleteModal = document.querySelector("#deleteModal");
+    let confirmDelete = document.querySelector(".confirmDelete");
+    let cancelDelete = document.querySelector(".cancelDelete");
+    let logOut = document.querySelector(".logOut");
+    let addPhoto = document.querySelector("#addPhoto");
+    for(let menu of menues){
+        menu.addEventListener("click", (e) => {
+            e.stopPropagation();
+            modal.showModal();
+            photoId = menu.getAttribute("id");
+        })
+    }
+
+    modal.addEventListener("click", (e) => {
+        if(e.target == modal){
+            modal.close();
+        }
+    })
+
+    redactPhoto.addEventListener("click", () => {
+        let el = document.getElementById(`${photoId}`);
+        let image = el.querySelector("img");
+        let name = el.querySelector(".photoName");
+        let description = el.querySelector(".photoDescription");
+        localStorage.setItem("oldFilePath", image.getAttribute("src"));
+        localStorage.setItem("oldName", name.textContent);
+        localStorage.setItem("oldDescription", description.textContent);
+        localStorage.setItem("photoId", photoId);
+        window.location.href = "../redactPhoto/redactPhoto.html";
+    })
+
+    deletePhoto.addEventListener("click", () => {
+        modal.close();
+        deleteModal.showModal();
+    })  
+
+    deleteModal.addEventListener("click", (e) => {
+        if(e.target == deleteModal){
+            deleteModal.close();
+        }
+    })
+
+    cancelDelete.addEventListener("click", () => {
+        console.log(`delete photo ${photoId}`);
+    })
+
+    confirmDelete.addEventListener("click", () => {
+        let photo = document.getElementById(`${photoId}`);
+        let imgPath = photo.querySelector("img").getAttribute("src");
+        let formData = new FormData();
+        formData.set("id", photoId);
+        formData.set("filePath", imgPath);
+        let response = fetch("../back/deletePhoto.php", {
+            method: "POST",
+            body: formData
+        });
+        response.then(response => {
+            return response.json();
+        })
+        .then(data => {
+            if(data['result'] == "Success"){
+                photo.remove();
+                deleteModal.close();
+            }
+            else{
+                //smth
+            }
+        })
+    })
+
+    logOut.addEventListener("click", () => {
+        window.location.href = "../auth/index.html";
+    })
+
+    addPhoto.addEventListener("click", () => {
+        window.location.href = "../addPhoto/addPhoto.html";
+    })
+
 }
 
 function getCookie(name) {

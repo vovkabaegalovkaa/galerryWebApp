@@ -29,7 +29,7 @@ if(isset($_POST['id'])){
         }
         $queryFile = "file_path=?";
         if(strlen($query) == 0){
-            $query = "UPDATE albums SET " . $queryFile;
+            $query = "UPDATE photoes SET " . $queryFile;
         }
         else{
             $query = $query . ", " . $queryFile;
@@ -40,7 +40,7 @@ if(isset($_POST['id'])){
         $name = sanitizeString($_POST['name']);
         $queryName = "title=?";
         if(strlen($query) == 0){
-            $query = "UPDATE albums SET " . $queryName;
+            $query = "UPDATE photoes SET " . $queryName;
         }
         else{
             $query = $query . ", " . $queryName;
@@ -51,7 +51,7 @@ if(isset($_POST['id'])){
         $description = sanitizeString($_POST["description"]);
         $queryDescription = "description=?";
         if(strlen($query) == 0){
-            $query = "UPDATE albums SET " . $queryDescription;
+            $query = "UPDATE photoes SET " . $queryDescription;
         }
         else{
             $query = $query . ", " . $queryDescription;

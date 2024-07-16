@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () =>{
-    localStorage.clear();
     let response = fetch("../back/getAlbums.php");
     response.then(response =>{
         return response.json();
@@ -123,10 +122,7 @@ function next(){
         })
         .then(data =>{
             if(data['result'] == "Success"){
-                let objectToDelete = document.getElementById(`${albumId}`);
-                if(objectToDelete.classList.contains('album')){
-                    objectToDelete.remove();
-                }
+                el.remove();
                 deleteModal.close();
             }
             else{

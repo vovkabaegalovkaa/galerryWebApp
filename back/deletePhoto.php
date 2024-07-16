@@ -10,15 +10,7 @@ if(isset($_POST['id']) && isset($_POST['filePath'])){
     if(checkDublicate($_POST['filePath'], $pdo, true) == false){
         unlink($_POST['filePath']);
     }
-    $stmt1 = $pdo->prepare("SELECT * from photoes WHERE album_id = ?");
-    $stmt1->bindParam(1, $_POST['id'], PDO::PARAM_INT);
-    $stmt1->execute();
-    while($row = $stmt1->fetch()){
-        if(checkDublicate($row["file_path"], $pdo) == false){
-            unlink($row['file_path']);
-        }
-    }
-    $stmt = $pdo->prepare("DELETE FROM albums WHERE id=?");
+    $stmt = $pdo->prepare("DELETE FROM photoes WHERE id=?");
     $stmt->bindParam(1, $_POST['id'], PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->rowCount();

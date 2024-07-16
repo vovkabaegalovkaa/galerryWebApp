@@ -1,8 +1,8 @@
 window.onload = () => {
     let addFileButton = document.querySelector("#addButton");
     let file = document.querySelector("#file");
-    let albumName = document.querySelector("#name");
-    let albumDescription = document.querySelector("#description");
+    let photoName = document.querySelector("#name");
+    let photoDescription = document.querySelector("#description");
     let confirm = document.querySelector("#addConfirm");
     let image = document.querySelector("img");
     let fileStatus = false;
@@ -31,15 +31,16 @@ window.onload = () => {
     })
 
     confirm.addEventListener("click", () => {
-        let name = (albumName.value.length > 0) ? albumName.value : `${getCookie("name")}s album`;
-        let description = (albumDescription.value.length > 0) ? albumDescription.value : `${getCookie("name")}s album`;
+        let name = (photoName.value.length > 0) ? photoName.value : `${getCookie("name")}s album`;
+        let description = (photoDescription.value.length > 0) ? photoDescription.value : `${getCookie("name")}s album`;
         let id = getCookie("id");
         let formData = new FormData();
         formData.set("name", name);
         formData.set('description', description);
         formData.set('userId', id);
         formData.set('file', fileToSend);
-        let response = fetch("../back/addAlbum.php", {
+        formData.set('albumId', localStorage.getItem("albumId"));
+        let response = fetch("../back/addPhoto.php", {
             method: "POST",
             body: formData
         });
@@ -48,7 +49,10 @@ window.onload = () => {
         })
         .then(data => {
             if(data == "Success"){
-                window.location.href = "../mainA/mainA.html";
+                window.location.href = "../mainP/mainP.html";
+            }
+            else{
+                //smth
             }
         })
     })
