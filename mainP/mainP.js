@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+    localStorage.removeItem('title');
+    localStorage.removeItem('description');
+    localStorage.removeItem('filePath');
     let albumId = localStorage.getItem("albumId");
     let response = fetch(`../back/getPhotoes.php?albumId=${albumId}`);
     response.then(response => {
@@ -172,6 +175,7 @@ function next(){
     let cancelDelete = document.querySelector(".cancelDelete");
     let logOut = document.querySelector(".logOut");
     let addPhoto = document.querySelector("#addPhoto");
+    let comments = document.querySelectorAll("#comment");
     for(let menu of menues){
         menu.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -244,6 +248,21 @@ function next(){
     addPhoto.addEventListener("click", () => {
         window.location.href = "../addPhoto/addPhoto.html";
     })
+
+    for(let comment of comments){
+        comment.addEventListener("click", () => {
+            let photo = comment.parentElement.parentElement.parentElement;
+            let photoId = photo.getAttribute('id');
+            let image = photo.querySelector("img");
+            let name = photo.querySelector(".photoName");
+            let description = photo.querySelector(".photoDescription");
+            localStorage.setItem("filePath", image.getAttribute("src"));
+            localStorage.setItem("title", name.textContent);
+            localStorage.setItem("description", description.textContent);
+            localStorage.setItem("photoId", photoId);
+            window.location.href = "../comments/comments.html";
+        })
+    }
 
 }
 

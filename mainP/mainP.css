@@ -47,7 +47,7 @@ button {
     height: 40px;
     position: absolute;
     color: rgb(135, 50, 168);
-    right: 20px; /* Adjust padding as necessary */
+    right: 20px; 
 }
 .photoesContainer{
     padding-top: 95px;
