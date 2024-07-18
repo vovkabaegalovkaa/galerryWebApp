@@ -128,3 +128,10 @@ button {
     width: 30%;
     height: 3em;
 }
+.back{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    color: rgb(135, 50, 168);
+    left: 20px;
+}

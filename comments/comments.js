@@ -80,6 +80,10 @@ function next(){
         })
     })
     let logout = document.querySelector(".logOut");
+    let back = document.querySelector(".back");
+    back.addEventListener("click", () => {
+        window.location.href = "../mainP/mainP.html";
+    })
     logout.addEventListener("click", () => {
         window.location.href = "../auth/index.html";
     })

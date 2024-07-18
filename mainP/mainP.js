@@ -174,6 +174,7 @@ function next(){
     let confirmDelete = document.querySelector(".confirmDelete");
     let cancelDelete = document.querySelector(".cancelDelete");
     let logOut = document.querySelector(".logOut");
+    let back = document.querySelector(".back");
     let addPhoto = document.querySelector("#addPhoto");
     let comments = document.querySelectorAll("#comment");
     for(let menu of menues){
@@ -243,6 +244,10 @@ function next(){
 
     logOut.addEventListener("click", () => {
         window.location.href = "../auth/index.html";
+    })
+
+    back.addEventListener("click", () => {
+        window.location.href = "../mainA/mainA.html";
     })
 
     addPhoto.addEventListener("click", () => {
